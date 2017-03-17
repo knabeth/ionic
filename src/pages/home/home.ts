@@ -12,17 +12,21 @@ export class HomePage {
 
     constructor(public navCtrl: NavController) {
         this.initializeItems();
+        this.initializeLocalStorage();
     }
 
-    addLocalStorage(){
+    addLocalStorage() {
         localStorage.setItem('button', JSON.stringify("yes"));
         this.localStorage = true;
     }
 
-    initializeItems() {
-        if(localStorage.getItem('button') != null){
+    initializeLocalStorage() {
+        if (localStorage.getItem('button') != null) {
             this.localStorage = true;
         }
+    }
+
+    initializeItems() {
         this.items = [
             'Amsterdam',
             'Bogota',
