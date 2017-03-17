@@ -12,4 +12,14 @@
         {{ item }}
       </ion-item>
     </ion-list>
+
+  <div class="local-storage" *ngIf="localStorage">
+    Le button a bien été ajouté au localstorage
+  </div>
+  
+  <div class="content" *ngIf="!localStorage">
+    <button (click)="addLocalStorage()">Ajouter au localStorage</button>
+  </div>
+
+
 </ion-content>
