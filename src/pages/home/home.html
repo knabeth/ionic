@@ -8,18 +8,9 @@
     <h2>Liste des conducteurs</h2>
     <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
     <ion-list>
-        <ion-item *ngFor="let item of items">
+        <ion-item (click)="selectUser($event) " *ngFor="let item of items">
             {{ item }}
         </ion-item>
     </ion-list>
-
-    <div class="local-storage" *ngIf="localStorage">
-        Le button a bien été ajouté au localstorage
-    </div>
-
-    <div class="content" *ngIf="!localStorage">
-        <button (click)="addLocalStorage()">Ajouter au localStorage</button>
-    </div>
-
-
+    <button style="display: none" class="validateuser" (click)="validateUser()" ion-button [navPush]="aboutPage"> valider </button>
 </ion-content>
