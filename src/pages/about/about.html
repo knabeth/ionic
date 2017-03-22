@@ -1,14 +1,17 @@
 <ion-header>
   <ion-navbar>
-    <ion-title  class="aboutTitle">
+    <ion-title  class="aboutTitle" >
       About
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <h3>Heure de départ :</h3>
+  <h3>Heure de départ :  <span class="startHour"></span></h3>
   <p class="starthour"></p>
-  <h3>Temps de conduite :</h3>
-  <p class="drivingtime"></p>
+  <h3>Temps de conduite : <span class="heureShow">00</span>:
+                          <span class="minuteShow">00</span>:
+                          <span class="secondeShow">00</span></h3>
+  <button   class="validateuser" on-tap="validateTrip()" ion-button > Fin de l'essai </button>
+
 </ion-content>

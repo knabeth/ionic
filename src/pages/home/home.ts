@@ -4,7 +4,8 @@ import axios, { AxiosRequestConfig, AxiosPromise } from 'axios';
 import 'rxjs/add/operator/map';
 import {document} from "@angular/platform-browser/src/facade/browser";
 import { Router } from '@angular/router';
-import {AboutPage} from '../about/about';
+import { AboutPage } from '../about/about';
+
 
 
 @Component({
@@ -12,6 +13,12 @@ import {AboutPage} from '../about/about';
     templateUrl: 'home.html'
 })
 export class HomePage {
+    showsecondCard = true;
+    hideList = false;
+    searchbarText = "";
+    seconde = "00";
+    minute = "00";
+    heure = "00";
 
     posts: any;
     aboutPage = AboutPage;
@@ -36,7 +43,8 @@ export class HomePage {
         this.initializeItems()
 
     }
-/*PREPARATION DE L AUTO COMPLETION AVEC SRC LOCALSTORAGE*/
+
+        /*PREPARATION DE L AUTO COMPLETION AVEC SRC LOCALSTORAGE*/
     initializeItems() {
         var localList = localStorage.getItem('nom');
         this.items = JSON.parse(localList);
@@ -44,14 +52,13 @@ export class HomePage {
     getItems(ev: any) {
        var localList = localStorage.getItem('nom');
         this.items = JSON.parse(localList);
-            var i = 0;
-            document.querySelector('.list-md').style.display ='block';
-            if( document.querySelector('.searchbar-input').value == this.items[this.items.indexOf(document.querySelector('.searchbar-input').value)]){
-                document.querySelector('.validateuser').style.display ='block';
-                alert('addd')
+
+        this.hideList = false;
+            if( this.searchbarText == this.items[this.items.indexOf(this.searchbarText)]){
+                this.showsecondCard = false;
             }
             else{
-                document.querySelector('.validateuser').style.display ='none';
+                this.showsecondCard = true;
             }
 
 
@@ -71,21 +78,13 @@ export class HomePage {
     }
     selectUser(event){
 
-        document.querySelector('.searchbar-input').value = event.toElement.innerText;
-        document.querySelector('.list-md').style.display ='none';
-
-        if( document.querySelector('.searchbar-input').value == this.items[this.items.indexOf(document.querySelector('.searchbar-input').value)]){
-
-            alert('if')
-        }
-        else{
-            document.querySelector('.validateuser').style.display ='none';
-            alert('else')
-        }
-
+        this.hideList = true;
+        this.showsecondCard = false;
+        this.searchbarText =    event.toElement.innerText;
+        document.querySelector('.searchbar-input').value  = event.toElement.innerText;
     }
     validateUser(){
-        localStorage.setItem( 'curentuser',  document.querySelector('.searchbar-input').value);
+        localStorage.setItem( 'curentuser',  this.searchbarText);
 
     }
 

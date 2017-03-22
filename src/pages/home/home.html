@@ -6,13 +6,13 @@
 
 <ion-content padding>
     <h2>Liste des conducteursss</h2>
-    <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
-    <ion-list>
+    <ion-searchbar (ionInput)="getItems($event)" class="searchbar-input" [(ngModel)]="searchbarText" ></ion-searchbar>
+    <ion-list [hidden]="hideList">
         <ion-item (click)="selectUser($event) "tappable *ngFor="let item of items">
             {{ item }}
         </ion-item>
     </ion-list>
-    <button  class="validateuser" on-tap="validateUser()" ion-button [navPush]="aboutPage"> valider </button>
+    <button [hidden]="showsecondCard"  class="validateuser" on-tap="validateUser()" ion-button [navPush]="aboutPage"> Début de l'essai </button>
 
 
 </ion-content>
