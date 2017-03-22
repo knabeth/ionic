@@ -12,6 +12,7 @@ import {AboutPage} from '../about/about';
     templateUrl: 'home.html'
 })
 export class HomePage {
+
     posts: any;
     aboutPage = AboutPage;
     private items: string[];
@@ -42,11 +43,12 @@ export class HomePage {
     }
     getItems(ev: any) {
        var localList = localStorage.getItem('nom');
- this.items = JSON.parse(localList);
+        this.items = JSON.parse(localList);
             var i = 0;
-        document.querySelector('.list-md').style.display ='block';
+            document.querySelector('.list-md').style.display ='block';
             if( document.querySelector('.searchbar-input').value == this.items[this.items.indexOf(document.querySelector('.searchbar-input').value)]){
                 document.querySelector('.validateuser').style.display ='block';
+                alert('addd')
             }
             else{
                 document.querySelector('.validateuser').style.display ='none';
@@ -68,19 +70,21 @@ export class HomePage {
 
     }
     selectUser(event){
+
         document.querySelector('.searchbar-input').value = event.toElement.innerText;
         document.querySelector('.list-md').style.display ='none';
 
         if( document.querySelector('.searchbar-input').value == this.items[this.items.indexOf(document.querySelector('.searchbar-input').value)]){
-            document.querySelector('.validateuser').style.display ='block';
+
+            alert('if')
         }
         else{
             document.querySelector('.validateuser').style.display ='none';
+            alert('else')
         }
 
     }
     validateUser(){
-
         localStorage.setItem( 'curentuser',  document.querySelector('.searchbar-input').value);
 
     }
@@ -89,6 +93,3 @@ export class HomePage {
 
 
 }
-
-
-

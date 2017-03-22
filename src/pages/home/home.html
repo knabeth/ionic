@@ -5,12 +5,14 @@
 </ion-header>
 
 <ion-content padding>
-    <h2>Liste des conducteurs</h2>
+    <h2>Liste des conducteursss</h2>
     <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
     <ion-list>
-        <ion-item (click)="selectUser($event) " *ngFor="let item of items">
+        <ion-item (click)="selectUser($event) "tappable *ngFor="let item of items">
             {{ item }}
         </ion-item>
     </ion-list>
-    <button style="display: none" class="validateuser" (click)="validateUser()" ion-button [navPush]="aboutPage"> valider </button>
+    <button  class="validateuser" on-tap="validateUser()" ion-button [navPush]="aboutPage"> valider </button>
+
+
 </ion-content>

@@ -7,11 +7,11 @@ import { NavController } from 'ionic-angular';
   templateUrl: 'about.html'
 })
 export class AboutPage {
-
   constructor(public navCtrl: NavController) {
-    document.querySelector('.aboutTitle').innerHTML = localStorage.getItem( 'curentuser')
-
 
   }
-
+  ionViewDidLoad(){
+  document.querySelector('.aboutTitle div').innerHTML = localStorage.getItem( 'curentuser');
+  
+}
 }
