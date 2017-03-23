@@ -19,6 +19,7 @@ export class HomePage {
     seconde = "00";
     minute = "00";
     heure = "00";
+    aboutTitle =localStorage.getItem( 'curentuser')
 
     posts: any;
     aboutPage = AboutPage;
@@ -26,6 +27,7 @@ export class HomePage {
 
     constructor(public http: Http) {
         /*REQUETTE ET STOCKAGE DANS LOCALSTORAGE*/
+
 
         var list=[];
         axios.get('http://catapultedriving.monsieursloop.com/index.php?function=get_users')

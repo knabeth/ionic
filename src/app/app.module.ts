@@ -6,16 +6,25 @@ import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 
+import { SignaturePadModule } from 'angular2-signaturepad';
+import { SignatureFieldComponent } from './signature-field/signature-field.component';
+
+
 @NgModule({
   declarations: [
     MyApp,
     AboutPage,
     ContactPage,
     HomePage,
-    TabsPage
+    TabsPage,
+    SignatureFieldComponent
+
   ],
   imports: [
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    SignaturePadModule
+
+
   ],
   bootstrap: [IonicApp],
   entryComponents: [
