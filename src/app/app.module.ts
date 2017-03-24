@@ -4,6 +4,8 @@ import { MyApp } from './app.component';
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
+import { AdminPage } from '../pages/admin/admin';
+
 import { TabsPage } from '../pages/tabs/tabs';
 
 import { SignaturePadModule } from 'angular2-signaturepad';
@@ -17,6 +19,7 @@ import { SignatureFieldComponent } from './signature-field/signature-field.compo
     ContactPage,
     HomePage,
     TabsPage,
+    AdminPage,
     SignatureFieldComponent
 
   ],
@@ -32,6 +35,7 @@ import { SignatureFieldComponent } from './signature-field/signature-field.compo
     AboutPage,
     ContactPage,
     HomePage,
+    AdminPage,
     TabsPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]

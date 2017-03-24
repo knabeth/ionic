@@ -4,7 +4,9 @@ import axios, { AxiosRequestConfig, AxiosPromise } from 'axios';
 import 'rxjs/add/operator/map';
 import {document} from "@angular/platform-browser/src/facade/browser";
 import { Router } from '@angular/router';
+import { NavController } from 'ionic-angular';
 import { AboutPage } from '../about/about';
+import {AdminPage} from "../admin/admin";
 
 
 
@@ -13,6 +15,7 @@ import { AboutPage } from '../about/about';
     templateUrl: 'home.html'
 })
 export class HomePage {
+    public plaquevalue: string;
     showsecondCard = true;
     hideList = false;
     searchbarText = "";
@@ -25,7 +28,7 @@ export class HomePage {
     aboutPage = AboutPage;
     private items: string[];
 
-    constructor(public http: Http) {
+    constructor(public http: Http,public navCtrl: NavController,) {
         /*REQUETTE ET STOCKAGE DANS LOCALSTORAGE*/
 
         var concession = [];
@@ -52,7 +55,17 @@ export class HomePage {
 
         this.initializeItems()
 
+
+
     }
+    ionViewWillEnter(){
+        if(localStorage.getItem('plaqueId') != null){
+            this.plaquevalue = localStorage.getItem('plaqueId');
+        }else{
+            this.plaquevalue = 'AB-123-AB'
+        }
+    }
+
 
         /*PREPARATION DE L AUTO COMPLETION AVEC SRC LOCALSTORAGE*/
     initializeItems() {
@@ -87,18 +100,18 @@ export class HomePage {
 
     }
     selectUser(event){
-
+        event.preventDefault();
         this.hideList = true;
         this.showsecondCard = false;
         this.searchbarText =    event.toElement.innerText;
         document.querySelector('.searchbar-input').value  = event.toElement.innerText;
+        alert('ok')
     }
     validateUser(){
         var tabparse = JSON.parse("[" + localStorage.getItem('nom') + "]")
 
         localStorage.setItem( 'curentuser',  this.searchbarText);
         console.log(localStorage.getItem('curentuser'))
-        console.log()
 
 
         localStorage.setItem( 'curentuserConcession', JSON.parse(localStorage.getItem('concession') )[tabparse[0].indexOf(  localStorage.getItem('curentuser') )] );
@@ -106,7 +119,10 @@ export class HomePage {
         console.log(localStorage)
 
     }
+goAdmin(){
+    this.navCtrl.push(AdminPage);
 
+}
 
 
 

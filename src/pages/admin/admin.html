@@ -1,0 +1,14 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>Espace administration</ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content>
+    <h3>Modifier plaque</h3>
+    <form>
+        <input [value]="plaquevalue" type="text" placeholder="AB-123-AB" [ngModelOptions]="{standalone: true}">
+        <input (click)="validateplaque()" type="submit">
+    </form>
+    <h3>Modifier Theme</h3>
+    <button ion-button (click)="synchronisation()" > Synchroniser les données </button>
+</ion-content>

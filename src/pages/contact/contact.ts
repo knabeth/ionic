@@ -86,9 +86,7 @@ export class ContactPage {
     var sendEnd = localStorage.getItem('curentuserEnd');
     var sendSignature = localStorage.getItem('curentuserSignature');
     var localLenght = localStorage.length.toString();
-    var curentuserTab = {sendNom,sendConcession,sendStart,sendTime,sendEnd,sendSignature};
 
-    console.log(localStorage.getItem('users') )
 
 
     if(localStorage.getItem('users') != null){
@@ -96,7 +94,7 @@ export class ContactPage {
 
       var number = 0;
 
-      for(var i = 0; i < users.lenght; i++){
+      for(var i = 0; i < users.length; i++){
         number++;
       }
 
@@ -104,23 +102,33 @@ export class ContactPage {
 
       var newUser = {
         id: newUserId,
-        firstName: "Raphael",
-        lastName: "Marquand"
-      }
+        nom: sendNom,
+        concession: sendConcession,
+        ville: sendVille,
+        debut:sendStart,
+        fin: sendEnd,
+        temps: sendTime,
+        signature: sendSignature
+      };
 
       users.push(newUser);
 
       localStorage.setItem('users', JSON.stringify(users));
+      console.log(localStorage.getItem('users'))
     }
 
     else{
-      console.log('ead' )
 
       var user =
           [{
             id: 0,
-            firstName: "Maxime",
-            lastName: "Sahagian"
+            nom: sendNom,
+            concession: sendConcession,
+            ville: sendVille,
+            debut:sendStart,
+            fin: sendEnd,
+            temps: sendTime,
+            signature: sendSignature
           }];
 
       localStorage.setItem('users', JSON.stringify(user));
