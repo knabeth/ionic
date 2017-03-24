@@ -77,7 +77,7 @@ export class ContactPage {
     document.querySelector('.recapVille').innerHTML = localStorage.getItem( 'curentuserVille');
 
   }
-  sendDatas(){
+  storeDatas(){
     var sendNom = localStorage.getItem('curentuser');
     var sendConcession = localStorage.getItem('curentuserConcession');
     var sendVille = localStorage.getItem('curentuserVille');
@@ -85,27 +85,47 @@ export class ContactPage {
     var sendTime = localStorage.getItem('curentuserTime');
     var sendEnd = localStorage.getItem('curentuserEnd');
     var sendSignature = localStorage.getItem('curentuserSignature');
-    var instance = axios.create({
-      timeout: 2000,
-      headers: {'X-Custom-Header': 'foobar'}
-    });
-    axios.post('http://catapultedriving.monsieursloop.com/index.php?function=insert_users',{
-      nom: sendNom,
-      concession: sendConcession,
-      ville: sendVille,
-      start: sendStart,
-      time: sendTime,
-      end: sendEnd,
-      signature: sendSignature,
-  })
-        .then(function (response) {
+    var localLenght = localStorage.length.toString();
+    var curentuserTab = {sendNom,sendConcession,sendStart,sendTime,sendEnd,sendSignature};
 
-          console.log(response)
+    console.log(localStorage.getItem('users') )
 
 
-        })
-        .catch(function (error) {
-        });
+    if(localStorage.getItem('users') != null){
+      var users = JSON.parse(localStorage.getItem('users'));
+
+      var number = 0;
+
+      for(var i = 0; i < users.lenght; i++){
+        number++;
+      }
+
+      var newUserId = number+1;
+
+      var newUser = {
+        id: newUserId,
+        firstName: "Raphael",
+        lastName: "Marquand"
+      }
+
+      users.push(newUser);
+
+      localStorage.setItem('users', JSON.stringify(users));
+    }
+
+    else{
+      console.log('ead' )
+
+      var user =
+          [{
+            id: 0,
+            firstName: "Maxime",
+            lastName: "Sahagian"
+          }];
+
+      localStorage.setItem('users', JSON.stringify(user));
+    }
+
   }
 
 }
