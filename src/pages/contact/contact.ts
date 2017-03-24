@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import axios, { AxiosRequestConfig, AxiosPromise } from 'axios';
+
 
 @Component({
   selector: 'page-contact',
@@ -11,18 +13,6 @@ export class ContactPage {
 
   }
   ionViewDidLoad() {
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -83,7 +73,39 @@ export class ContactPage {
     localStorage.setItem( 'curentuserEnd', document.querySelector('.recapEnd').innerHTML);
 
     document.querySelector('.recapTime').innerHTML = localStorage.getItem( 'curentuserTime');
+    document.querySelector('.recapConcession').innerHTML = localStorage.getItem( 'curentuserConcession');
+    document.querySelector('.recapVille').innerHTML = localStorage.getItem( 'curentuserVille');
 
+  }
+  sendDatas(){
+    var sendNom = localStorage.getItem('curentuser');
+    var sendConcession = localStorage.getItem('curentuserConcession');
+    var sendVille = localStorage.getItem('curentuserVille');
+    var sendStart = localStorage.getItem('curentuserStart');
+    var sendTime = localStorage.getItem('curentuserTime');
+    var sendEnd = localStorage.getItem('curentuserEnd');
+    var sendSignature = localStorage.getItem('curentuserSignature');
+    var instance = axios.create({
+      timeout: 2000,
+      headers: {'X-Custom-Header': 'foobar'}
+    });
+    axios.post('http://catapultedriving.monsieursloop.com/index.php?function=insert_users',{
+      nom: sendNom,
+      concession: sendConcession,
+      ville: sendVille,
+      start: sendStart,
+      time: sendTime,
+      end: sendEnd,
+      signature: sendSignature,
+  })
+        .then(function (response) {
+
+          console.log(response)
+
+
+        })
+        .catch(function (error) {
+        });
   }
 
 }

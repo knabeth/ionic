@@ -28,15 +28,23 @@ export class HomePage {
     constructor(public http: Http) {
         /*REQUETTE ET STOCKAGE DANS LOCALSTORAGE*/
 
-
-        var list=[];
+        var concession = [];
+        var ville = [];
+        var list = [];
         axios.get('http://catapultedriving.monsieursloop.com/index.php?function=get_users')
             .then(function (response) {
                 var i = 0;
                 for(i=0 ; i<response.data.users.length;i++) {
                     list.push(response.data.users[i].name);
+                    concession.push(response.data.users[i].concession);
+                    ville.push(response.data.users[i].ville);
+
                 }
                 localStorage.setItem( 'nom', JSON.stringify(list));
+                localStorage.setItem( 'concession', JSON.stringify(concession));
+                localStorage.setItem( 'ville', JSON.stringify(ville));
+        console.log(localStorage)
+
 
             })
             .catch(function (error) {
@@ -86,7 +94,16 @@ export class HomePage {
         document.querySelector('.searchbar-input').value  = event.toElement.innerText;
     }
     validateUser(){
+        var tabparse = JSON.parse("[" + localStorage.getItem('nom') + "]")
+
         localStorage.setItem( 'curentuser',  this.searchbarText);
+        console.log(localStorage.getItem('curentuser'))
+        console.log()
+
+
+        localStorage.setItem( 'curentuserConcession', JSON.parse(localStorage.getItem('concession') )[tabparse[0].indexOf(  localStorage.getItem('curentuser') )] );
+        localStorage.setItem( 'curentuserVille',  JSON.parse(localStorage.getItem('ville') )[tabparse[0].indexOf(  localStorage.getItem('curentuser') )] );
+        console.log(localStorage)
 
     }
 
